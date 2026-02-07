@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo6la1bbohnai"]
+
+[ext_resource type="Script" uid="uid://dxjun8ix7nb3b" path="res://enemy_finder.gd" id="1_21iqg"]
+[ext_resource type="Texture2D" uid="uid://bc1ww7mtudxb0" path="res://images/second_alien_cut.png" id="1_bwc7n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqg0e"]
+radius = 500.0
+
+[node name="EnemyFinder" type="CharacterBody2D"]
+script = ExtResource("1_21iqg")
+
+[node name="EnemyFinderSprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_bwc7n")
+
+[node name="EnemyArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyArea"]
+shape = SubResource("CircleShape2D_yqg0e")
+one_way_collision_margin = 0.0
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-13, -72, -8, -72, -8, -26, 9, -25, 10, -73, 16, -73, 20, -48, 61, -10, 59, -3, 36, -2, 17, 18, 18, 28, 12, 30, 12, 59, 4, 65, -1, 65, -10, 61, -10, 29, -15, 28, -14, 20, -35, -3, -55, -3, -57, -12, -21, -44)
+
+[connection signal="body_entered" from="EnemyArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="EnemyArea" to="." method="_on_area_2d_body_exited"]

@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bobdo1ohvv28k"]
+
+[ext_resource type="Texture2D" uid="uid://c4uvpp3m8sykv" path="res://images/ships_human.png" id="1_afjo2"]
+[ext_resource type="Script" uid="uid://qjlyysffbigy" path="res://player.gd" id="1_b54np"]
+[ext_resource type="PackedScene" uid="uid://d1ikafmqs8wtj" path="res://bullet.tscn" id="2_edqio"]
+[ext_resource type="Texture2D" uid="uid://dth8qf06kgcn0" path="res://images/ships_human_move.png" id="3_5qbga"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c6c0q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_afjo2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5qbga")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_huh7o"]
+radius = 43.0
+height = 98.0
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(799, 1813)
+script = ExtResource("1_b54np")
+bullet_scene = ExtResource("2_edqio")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.614, 2)
+sprite_frames = SubResource("SpriteFrames_c6c0q")
+animation = &"move"
+frame_progress = 0.107567
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_huh7o")
+
+[connection signal="hit" from="." to="." method="_on_hit"]

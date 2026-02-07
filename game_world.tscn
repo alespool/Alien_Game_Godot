@@ -1,0 +1,62 @@
+[gd_scene load_steps=12 format=3 uid="uid://csfcy3pkuysr5"]
+
+[ext_resource type="Script" uid="uid://sulwkxrwt6oj" path="res://gameworld.gd" id="1_wxcyb"]
+[ext_resource type="PackedScene" uid="uid://bobdo1ohvv28k" path="res://player.tscn" id="2_dp2f0"]
+[ext_resource type="PackedScene" uid="uid://d1kkpdddugu7g" path="res://enemy.tscn" id="3_gbwmf"]
+[ext_resource type="PackedScene" uid="uid://bo6la1bbohnai" path="res://enemy_finder.tscn" id="3_iewd8"]
+[ext_resource type="PackedScene" uid="uid://cdhgysm52yax3" path="res://coin.tscn" id="3_nqyfm"]
+[ext_resource type="PackedScene" uid="uid://cgitcgun582rh" path="res://hud.tscn" id="4_4m8ea"]
+[ext_resource type="PackedScene" uid="uid://bbbca2sux1w4r" path="res://enemy_shooter.tscn" id="4_5lent"]
+[ext_resource type="AudioStream" uid="uid://bgpln5700d5av" path="res://sounds/mainMenu.mp3" id="5_7stsd"]
+[ext_resource type="Script" uid="uid://b5850cqn14s0" path="res://save_manager.gd" id="6_6d0vw"]
+[ext_resource type="Texture2D" uid="uid://b8vxo1yrveelg" path="res://images/first_background.png" id="10_8imnd"]
+
+[sub_resource type="Curve2D" id="Curve2D_bn4g2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2008, 0, 0, 0, 0, 0, 2008, 1504, 0, 0, 0, 0, 0, 1504, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="GameWorld" type="Node"]
+script = ExtResource("1_wxcyb")
+enemy_scene = ExtResource("3_gbwmf")
+chasing_enemy_scene = ExtResource("3_iewd8")
+shooting_enemy_scene = ExtResource("4_5lent")
+coin_scene = ExtResource("3_nqyfm")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = 1.0
+offset_right = 2008.0
+offset_bottom = 1505.0
+texture = ExtResource("10_8imnd")
+
+[node name="Player" parent="." instance=ExtResource("2_dp2f0")]
+position = Vector2(1096, 1352)
+
+[node name="EnemyTimer" type="Timer" parent="."]
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="EnemyPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_bn4g2")
+
+[node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemyPath"]
+
+[node name="HUD" parent="." instance=ExtResource("4_4m8ea")]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7stsd")
+volume_db = -80.0
+
+[node name="SaveManager" type="Node" parent="."]
+script = ExtResource("6_6d0vw")
+
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

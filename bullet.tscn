@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1ikafmqs8wtj"]
+
+[ext_resource type="Script" uid="uid://835ip8ml48cn" path="res://bullet.gd" id="1_8bgvl"]
+[ext_resource type="Texture2D" uid="uid://duxssww2xabhh" path="res://images/bullet.png" id="1_ijbvi"]
+[ext_resource type="Script" uid="uid://kbfnylo1rn1o" path="res://line_2d.gd" id="3_5go84"]
+
+[sub_resource type="Curve" id="Curve_owvrv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_count = 7
+
+[sub_resource type="Gradient" id="Gradient_gxjf2"]
+interpolation_color_space = 1
+colors = PackedColorArray(1, 1, 1, 1, 0.996078, 0.788235, 0.054902, 1)
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 3
+collision_mask = 5
+script = ExtResource("1_8bgvl")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ijbvi")
+
+[node name="Line2D" type="Line2D" parent="Sprite2D"]
+rotation = 1.5708
+width_curve = SubResource("Curve_owvrv")
+default_color = Color(0.996078, 0.788235, 0.054902, 1)
+gradient = SubResource("Gradient_gxjf2")
+script = ExtResource("3_5go84")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+rotation = -1.5708
+polygon = PackedVector2Array(-10, -1, 0, -4, 5, -4, 9, -1, 6, 4, -2, 4, -7, 2)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

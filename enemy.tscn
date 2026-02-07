@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1kkpdddugu7g"]
+
+[ext_resource type="Script" uid="uid://3bn7vouj0m7y" path="res://enemy.gd" id="1_abhdh"]
+[ext_resource type="Texture2D" uid="uid://dyhctpcphuawt" path="res://images/first_alien_cut.png" id="1_l8g1e"]
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 5
+collision_mask = 3
+script = ExtResource("1_abhdh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2.075)
+texture = ExtResource("1_l8g1e")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-6, -2)
+rotation = 1.5708
+polygon = PackedVector2Array(-31, -7.99989, -7.00012, -34, -4.0002, -55, 16.9999, -21.0001, 32.9999, -19.0001, 33, 1.99988, 18, 2.99993, -5.99986, 40, -7.99994, 18)

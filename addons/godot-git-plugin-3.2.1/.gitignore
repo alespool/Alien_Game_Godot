@@ -1,0 +1,37 @@
+# SConstruct db
+*.dblite
+
+# Godot Serialisations
+extension_api.json
+!/ci/extension_api.json
+
+# Visual Studio Cache
+.vs/
+
+# VSCode Cache
+.vscode/
+
+# Mac stuff
+.DS_Store
+
+# Vim
+*.swp
+
+# Binaries
+__pycache__/
+build/
+bin/
+macos/
+linux/
+win64/
+*.lib
+*.a
+*.obj
+*.os
+*.ilk
+*.pdb
+*.pyc
+*.zip
+
+# Misc
+*.log

@@ -1,0 +1,117 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgitcgun582rh"]
+
+[ext_resource type="Script" uid="uid://c4ukodfaby7ha" path="res://hud.gd" id="1_pnbpd"]
+[ext_resource type="FontFile" uid="uid://k3n0mwsv8b4j" path="res://Xolonium-Regular.ttf" id="2_aduwp"]
+[ext_resource type="PackedScene" uid="uid://ccvv5oa7cjk1q" path="res://bottom_hud.tscn" id="3_c0yma"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_ncjjr"]
+action = &"start_game"
+
+[sub_resource type="InputEventAction" id="InputEventAction_autwv"]
+action = &"quit_game"
+
+[sub_resource type="Shortcut" id="Shortcut_7bqal"]
+events = [SubResource("InputEventAction_ncjjr"), SubResource("InputEventAction_autwv")]
+
+[sub_resource type="Theme" id="Theme_61q2w"]
+default_font = ExtResource("2_aduwp")
+default_font_size = 35
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="TopHUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 972.0
+offset_right = 1012.0
+offset_bottom = 40.0
+script = ExtResource("1_pnbpd")
+
+[node name="HighScoreLabel" type="Label" parent="TopHUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 932.0
+offset_right = 988.0
+offset_bottom = 72.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_aduwp")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="TopHUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 36.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_aduwp")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BulletsCount" type="Label" parent="TopHUD"]
+layout_mode = 0
+offset_left = -972.0
+offset_right = -916.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("2_aduwp")
+theme_override_font_sizes/font_size = 64
+text = "Bullets ready:0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="TopHUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = 619.0
+offset_right = 248.0
+offset_bottom = 841.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_aduwp")
+theme_override_font_sizes/font_size = 64
+text = "KILL THE ALIENS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="TopHUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -91.0
+offset_top = 540.0
+offset_right = 109.0
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_aduwp")
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_7bqal")
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="TopHUD"]
+one_shot = true
+
+[node name="BottomHUD" parent="." instance=ExtResource("3_c0yma")]
+offset_top = 0.0
+theme = SubResource("Theme_61q2w")
+
+[connection signal="pressed" from="TopHUD/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="TopHUD/MessageTimer" to="TopHUD" method="_on_message_timer_timeout"]

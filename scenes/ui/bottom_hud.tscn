@@ -292,14 +292,10 @@ theme_override_font_sizes/normal_font_size = 0
 text = "UPGRADES:"
 
 [connection signal="pressed" from="UpgradeBar/Speed" to="." method="_on_speed_pressed"]
-[connection signal="pressed" from="UpgradeBar/Speed" to="UpgradeBar/Speed" method="_on_pressed"]
 [connection signal="timeout" from="UpgradeBar/Speed/Timer" to="UpgradeBar/Speed" method="_on_timer_timeout"]
 [connection signal="pressed" from="UpgradeBar/Health" to="." method="_on_health_pressed"]
-[connection signal="pressed" from="UpgradeBar/Health" to="UpgradeBar/Health" method="_on_pressed"]
 [connection signal="timeout" from="UpgradeBar/Health/Timer" to="UpgradeBar/Health" method="_on_timer_timeout"]
 [connection signal="pressed" from="UpgradeBar/Shield" to="." method="_on_shield_pressed"]
-[connection signal="pressed" from="UpgradeBar/Shield" to="UpgradeBar/Shield" method="_on_pressed"]
 [connection signal="timeout" from="UpgradeBar/Shield/Timer" to="UpgradeBar/Shield" method="_on_timer_timeout"]
 [connection signal="pressed" from="UpgradeBar/RapidFire" to="." method="_on_rapid_fire_pressed"]
-[connection signal="pressed" from="UpgradeBar/RapidFire" to="UpgradeBar/RapidFire" method="_on_pressed"]
 [connection signal="timeout" from="UpgradeBar/RapidFire/Timer" to="UpgradeBar/RapidFire" method="_on_timer_timeout"]

@@ -8,7 +8,7 @@ extends Control
 @onready var speed_upgrade_btn: TextureButton = $UpgradeBar/Speed
 @onready var health_upgrade_btn: TextureButton = $UpgradeBar/Health
 @onready var shield_upgrade_btn: TextureButton = $UpgradeBar/Shield
-@onready var rapid_fire_upgrade_btn: TextureButton = $UpgradeBar/RapidFireUpgrade
+@onready var rapid_fire_upgrade_btn: TextureButton = $UpgradeBar/RapidFire
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,13 +40,25 @@ func update_upgrade_costs(costs: Dictionary) -> void:
 	$UpgradeBar/RapidFire/Container/Value.text = str(costs["rapid_fire"])
 	
 func _on_speed_pressed() -> void:
-	get_parent().get_parent().purchase_upgrade("speed")
+	if get_parent().get_parent().purchase_upgrade("speed"):
+		speed_upgrade_btn._on_pressed()
 
 func _on_health_pressed() -> void:
-	get_parent().get_parent().purchase_upgrade("health")
+	if get_parent().get_parent().purchase_upgrade("health"):
+		health_upgrade_btn._on_pressed()
 
 func _on_shield_pressed() -> void:
-	get_parent().get_parent().purchase_upgrade("shield")
+	if get_parent().get_parent().purchase_upgrade("shield"):
+		shield_upgrade_btn._on_pressed()
 
 func _on_rapid_fire_pressed() -> void:
-	get_parent().get_parent().purchase_upgrade("rapid_fire")
+	if get_parent().get_parent().purchase_upgrade("rapid_fire"):
+		rapid_fire_upgrade_btn._on_pressed()
+
+func _input(event):
+	if event is InputEventKey and event.pressed and not event.is_echo():
+		match event.keycode:
+			KEY_F1: _on_speed_pressed();
+			KEY_F2: _on_health_pressed();
+			KEY_F3: _on_shield_pressed();
+			KEY_F4: _on_rapid_fire_pressed();

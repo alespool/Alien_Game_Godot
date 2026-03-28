@@ -38,3 +38,7 @@ func _on_missile_body_entered(body: Node2D) -> void:
 
 func _on_lifetime_timeout() -> void:
 	queue_free()
+
+func _ready():
+	await get_tree().create_timer(3.0).timeout;
+	queue_free();

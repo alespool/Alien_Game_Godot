@@ -17,14 +17,14 @@ func _process(delta: float) -> void:
 	$Sweep.value = int(($Timer.time_left / cooldown) * 100)
 
 func _on_pressed() -> void:
-	disabled = true
-	set_process(true)
-	$Timer.start()
-	time_label.show()
+	disabled = true;
+	set_process(true);
+	$Timer.start();
+	time_label.show();
 
 func _on_timer_timeout() -> void:
-	print("ability ready")
-	$Sweep.value = 0
-	disabled = false
-	time_label.hide()
-	set_process(false)
+	$Sweep.value = 0;
+	disabled = false;
+	time_label.hide();
+	set_process(false);
+	release_focus();

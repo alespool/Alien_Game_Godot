@@ -27,9 +27,9 @@ New functions to add (from most important to leasts):
 
 - Scoring (✔️)
 - Main menu (✔️)
-- Sounds (75%)
-- Different alien types
-- Different types of bullets
+- Sounds (25%)
+- Different alien types (25%)
+- Different types of bullets (25%)
 - Bullet avoidant alien ships
 
-# TODO: add class for movement of ship
+# TODO: Add Boss fights, increasing difficulty

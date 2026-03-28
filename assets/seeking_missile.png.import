@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ojn6d2nrnq6b"
-path="res://.godot/imported/MonedaD.png-5552ed23d09941c2a9c7417a56fddc9b.ctex"
+uid="uid://l86r7vptktj7"
+path="res://.godot/imported/seeking_missile.png-8eb3740fbe92905f2e153ccd6c97902e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/MonedaD.png"
-dest_files=["res://.godot/imported/MonedaD.png-5552ed23d09941c2a9c7417a56fddc9b.ctex"]
+source_file="res://assets/seeking_missile.png"
+dest_files=["res://.godot/imported/seeking_missile.png-8eb3740fbe92905f2e153ccd6c97902e.ctex"]
 
 [params]
 

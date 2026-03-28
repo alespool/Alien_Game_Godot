@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="AlienGame"
-run/main_scene="res://game_world.tscn"
+run/main_scene="uid://csfcy3pkuysr5"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

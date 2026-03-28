@@ -1,0 +1,305 @@
+[gd_scene format=3 uid="uid://ccvv5oa7cjk1q"]
+
+[ext_resource type="Texture2D" uid="uid://bslbgyb3wbg5l" path="res://assets/upgrades/speed_smaller.png" id="2_oqy7g"]
+[ext_resource type="Script" uid="uid://c2asb0rt5ur5b" path="res://scenes/ui/bottom_hud.gd" id="2_y3ehy"]
+[ext_resource type="Texture2D" uid="uid://4pfco10ebmq5" path="res://assets/upgrades/health_smaller.png" id="5_kala5"]
+[ext_resource type="Texture2D" uid="uid://cmcxmw22qje3g" path="res://assets/upgrades/shield_smaller.png" id="6_o422q"]
+[ext_resource type="Script" uid="uid://bosrr4pl26bt6" path="res://scenes/systems/texture_button.gd" id="7_i81sd"]
+[ext_resource type="FontFile" uid="uid://b0j36jw5hqp1j" path="res://fonts/Xolonium-Regular.ttf" id="7_k0vxu"]
+[ext_resource type="Texture2D" uid="uid://8msvcvdrqiis" path="res://assets/upgrades/rapid_fire_smaller.png" id="7_khv5l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pweif"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7kun"]
+bg_color = Color(0.6, 0.204, 0.204, 1)
+
+[node name="BottomHUD" type="Control" unique_id=1751961985]
+clip_contents = true
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 3
+anchor_top = 0.9
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("2_y3ehy")
+
+[node name="Panel" type="Panel" parent="." unique_id=2103662955]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.069
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -10.35
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=183585890]
+layout_mode = 0
+anchor_left = 0.375
+anchor_top = 0.622
+anchor_right = 0.641
+anchor_bottom = 0.83
+offset_left = -6.10352e-05
+offset_top = -0.400009
+offset_right = 0.999756
+offset_bottom = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_pweif")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e7kun")
+value = 100.0
+show_percentage = false
+
+[node name="CoinCounter" type="HBoxContainer" parent="." unique_id=2060285828]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.484
+anchor_top = 0.24
+anchor_right = 0.522
+anchor_bottom = 0.44
+offset_left = -6.10352e-05
+offset_right = 51.8979
+offset_bottom = 17.4
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 2
+
+[node name="CoinIcon" type="TextureRect" parent="CoinCounter" unique_id=417099577]
+layout_mode = 2
+
+[node name="CoinAmount" type="Label" parent="CoinCounter" unique_id=2029579357]
+layout_mode = 2
+text = "Coins: "
+
+[node name="UpgradeBar" type="HBoxContainer" parent="." unique_id=2114775138]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 139.0
+offset_top = 41.0
+offset_right = -1375.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 62
+
+[node name="Speed" type="TextureButton" parent="UpgradeBar" unique_id=334923778]
+layout_mode = 2
+texture_normal = ExtResource("2_oqy7g")
+script = ExtResource("7_i81sd")
+
+[node name="Sweep" type="TextureProgressBar" parent="UpgradeBar/Speed" unique_id=1391106202]
+modulate = Color(0.356565, 0.356565, 0.356565, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+fill_mode = 5
+
+[node name="Timer" type="Timer" parent="UpgradeBar/Speed" unique_id=1619013628]
+wait_time = 2.0
+one_shot = true
+
+[node name="Container" type="MarginContainer" parent="UpgradeBar/Speed" unique_id=492495378]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.47
+anchor_right = 1.0
+anchor_bottom = 0.66
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Value" type="Label" parent="UpgradeBar/Speed/Container" unique_id=2091733704]
+layout_mode = 2
+theme_override_constants/outline_size = -1
+theme_override_fonts/font = ExtResource("7_k0vxu")
+theme_override_font_sizes/font_size = 10
+text = "0.0"
+horizontal_alignment = 2
+clip_text = true
+
+[node name="Cost" type="Label" parent="UpgradeBar/Speed" unique_id=2048999292]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.75
+anchor_right = 1.04
+anchor_bottom = 0.98
+offset_left = -0.0250001
+theme_override_fonts/font = ExtResource("7_k0vxu")
+theme_override_font_sizes/font_size = 15
+text = "10"
+horizontal_alignment = 1
+
+[node name="Health" type="TextureButton" parent="UpgradeBar" unique_id=2060044646]
+layout_mode = 2
+texture_normal = ExtResource("5_kala5")
+script = ExtResource("7_i81sd")
+
+[node name="Sweep" type="TextureProgressBar" parent="UpgradeBar/Health" unique_id=454128149]
+modulate = Color(0.356863, 0.356863, 0.356863, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+fill_mode = 5
+
+[node name="Timer" type="Timer" parent="UpgradeBar/Health" unique_id=869110021]
+wait_time = 2.0
+one_shot = true
+
+[node name="Container" type="MarginContainer" parent="UpgradeBar/Health" unique_id=631485001]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.47
+anchor_right = 1.0
+anchor_bottom = 0.66
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Value" type="Label" parent="UpgradeBar/Health/Container" unique_id=2074362854]
+layout_mode = 2
+theme_override_constants/outline_size = -1
+theme_override_fonts/font = ExtResource("7_k0vxu")
+theme_override_font_sizes/font_size = 10
+text = "0.0"
+horizontal_alignment = 2
+clip_text = true
+
+[node name="Cost" type="Label" parent="UpgradeBar/Health" unique_id=1601740537]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.75
+anchor_right = 1.04
+anchor_bottom = 0.98
+offset_left = -0.0250001
+theme_override_fonts/font = ExtResource("7_k0vxu")
+theme_override_font_sizes/font_size = 15
+text = "15"
+horizontal_alignment = 1
+
+[node name="Shield" type="TextureButton" parent="UpgradeBar" unique_id=1090919713]
+layout_mode = 2
+texture_normal = ExtResource("6_o422q")
+script = ExtResource("7_i81sd")
+
+[node name="Sweep" type="TextureProgressBar" parent="UpgradeBar/Shield" unique_id=1139947091]
+modulate = Color(0.356863, 0.356863, 0.356863, 1)
+layout_mode = 0
+offset_right = 41.0
+offset_bottom = 40.0
+fill_mode = 5
+
+[node name="Timer" type="Timer" parent="UpgradeBar/Shield" unique_id=1971556322]
+wait_time = 2.0
+one_shot = true
+
+[node name="Container" type="MarginContainer" parent="UpgradeBar/Shield" unique_id=411448632]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.47
+anchor_right = 1.0
+anchor_bottom = 0.66
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Value" type="Label" parent="UpgradeBar/Shield/Container" unique_id=989318336]
+layout_mode = 2
+theme_override_constants/outline_size = -1
+theme_override_fonts/font = ExtResource("7_k0vxu")
+theme_override_font_sizes/font_size = 10
+text = "0.0"
+horizontal_alignment = 2
+clip_text = true
+
+[node name="Cost" type="Label" parent="UpgradeBar/Shield" unique_id=820876551]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.75
+anchor_right = 1.04
+anchor_bottom = 0.98
+offset_left = -0.0250001
+theme_override_fonts/font = ExtResource("7_k0vxu")
+theme_override_font_sizes/font_size = 15
+text = "20"
+horizontal_alignment = 1
+
+[node name="RapidFire" type="TextureButton" parent="UpgradeBar" unique_id=958084752]
+layout_mode = 2
+texture_normal = ExtResource("7_khv5l")
+script = ExtResource("7_i81sd")
+
+[node name="Sweep" type="TextureProgressBar" parent="UpgradeBar/RapidFire" unique_id=262664156]
+modulate = Color(0.356863, 0.356863, 0.356863, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+fill_mode = 5
+
+[node name="Timer" type="Timer" parent="UpgradeBar/RapidFire" unique_id=538442374]
+wait_time = 2.0
+one_shot = true
+
+[node name="Container" type="MarginContainer" parent="UpgradeBar/RapidFire" unique_id=1786281605]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.47
+anchor_right = 1.0
+anchor_bottom = 0.66
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Value" type="Label" parent="UpgradeBar/RapidFire/Container" unique_id=1241869096]
+layout_mode = 2
+theme_override_constants/outline_size = -1
+theme_override_fonts/font = ExtResource("7_k0vxu")
+theme_override_font_sizes/font_size = 10
+text = "0.0"
+horizontal_alignment = 2
+clip_text = true
+
+[node name="Cost" type="Label" parent="UpgradeBar/RapidFire" unique_id=663878894]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.75
+anchor_right = 1.04
+anchor_bottom = 0.98
+offset_left = -0.0250001
+theme_override_fonts/font = ExtResource("7_k0vxu")
+theme_override_font_sizes/font_size = 15
+text = "25"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1444141307]
+layout_mode = 0
+anchor_left = 0.12
+anchor_right = 0.323
+anchor_bottom = 0.32
+offset_left = 0.999985
+theme_override_fonts/normal_font = ExtResource("7_k0vxu")
+theme_override_font_sizes/normal_font_size = 0
+text = "UPGRADES:"
+
+[connection signal="pressed" from="UpgradeBar/Speed" to="." method="_on_speed_pressed"]
+[connection signal="pressed" from="UpgradeBar/Speed" to="UpgradeBar/Speed" method="_on_pressed"]
+[connection signal="timeout" from="UpgradeBar/Speed/Timer" to="UpgradeBar/Speed" method="_on_timer_timeout"]
+[connection signal="pressed" from="UpgradeBar/Health" to="." method="_on_health_pressed"]
+[connection signal="pressed" from="UpgradeBar/Health" to="UpgradeBar/Health" method="_on_pressed"]
+[connection signal="timeout" from="UpgradeBar/Health/Timer" to="UpgradeBar/Health" method="_on_timer_timeout"]
+[connection signal="pressed" from="UpgradeBar/Shield" to="." method="_on_shield_pressed"]
+[connection signal="pressed" from="UpgradeBar/Shield" to="UpgradeBar/Shield" method="_on_pressed"]
+[connection signal="timeout" from="UpgradeBar/Shield/Timer" to="UpgradeBar/Shield" method="_on_timer_timeout"]
+[connection signal="pressed" from="UpgradeBar/RapidFire" to="." method="_on_rapid_fire_pressed"]
+[connection signal="pressed" from="UpgradeBar/RapidFire" to="UpgradeBar/RapidFire" method="_on_pressed"]
+[connection signal="timeout" from="UpgradeBar/RapidFire/Timer" to="UpgradeBar/RapidFire" method="_on_timer_timeout"]

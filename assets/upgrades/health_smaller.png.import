@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ojn6d2nrnq6b"
-path="res://.godot/imported/MonedaD.png-5552ed23d09941c2a9c7417a56fddc9b.ctex"
+uid="uid://4pfco10ebmq5"
+path="res://.godot/imported/health_smaller.png-a01848458b0e12a09c93e92faaf2ae2f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/MonedaD.png"
-dest_files=["res://.godot/imported/MonedaD.png-5552ed23d09941c2a9c7417a56fddc9b.ctex"]
+source_file="res://assets/upgrades/health_smaller.png"
+dest_files=["res://.godot/imported/health_smaller.png-a01848458b0e12a09c93e92faaf2ae2f.ctex"]
 
 [params]
 

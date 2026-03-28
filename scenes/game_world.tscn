@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://csfcy3pkuysr5"]
+
+[ext_resource type="Script" uid="uid://bipd7po3rf7tt" path="res://scenes/gameworld.gd" id="1_wxcyb"]
+[ext_resource type="PackedScene" uid="uid://bobdo1ohvv28k" path="res://scenes/player/player.tscn" id="2_dp2f0"]
+[ext_resource type="PackedScene" uid="uid://d1kkpdddugu7g" path="res://scenes/enemies/enemy.tscn" id="3_gbwmf"]
+[ext_resource type="PackedScene" uid="uid://bo6la1bbohnai" path="res://scenes/enemies/enemy_finder.tscn" id="3_iewd8"]
+[ext_resource type="PackedScene" uid="uid://cdhgysm52yax3" path="res://scenes/objects/coin.tscn" id="3_nqyfm"]
+[ext_resource type="PackedScene" uid="uid://cgitcgun582rh" path="res://scenes/ui/hud.tscn" id="4_4m8ea"]
+[ext_resource type="PackedScene" uid="uid://bbbca2sux1w4r" path="res://scenes/enemies/enemy_shooter.tscn" id="4_5lent"]
+[ext_resource type="AudioStream" uid="uid://bgpln5700d5av" path="res://sounds/mainMenu.mp3" id="5_7stsd"]
+[ext_resource type="Script" uid="uid://3pdfnpm43ivu" path="res://scenes/data/save_manager.gd" id="6_6d0vw"]
+[ext_resource type="Texture2D" uid="uid://b8vxo1yrveelg" path="res://assets/first_background.png" id="10_8imnd"]
+
+[sub_resource type="Curve2D" id="Curve2D_bn4g2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2008, 0, 0, 0, 0, 0, 2008, 1504, 0, 0, 0, 0, 0, 1504, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="GameWorld" type="Node" unique_id=151224660]
+script = ExtResource("1_wxcyb")
+enemy_scene = ExtResource("3_gbwmf")
+chasing_enemy_scene = ExtResource("3_iewd8")
+shooting_enemy_scene = ExtResource("4_5lent")
+coin_scene = ExtResource("3_nqyfm")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=726290088]
+offset_top = 1.0
+offset_right = 2008.0
+offset_bottom = 1505.0
+texture = ExtResource("10_8imnd")
+
+[node name="Player" parent="." unique_id=1803027408 instance=ExtResource("2_dp2f0")]
+position = Vector2(1096, 1352)
+
+[node name="EnemyTimer" type="Timer" parent="." unique_id=909488148]
+
+[node name="RespawnTimer" type="Timer" parent="." unique_id=1115826204]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartTimer" type="Timer" parent="." unique_id=1759786551]
+wait_time = 2.0
+one_shot = true
+
+[node name="EnemyPath" type="Path2D" parent="." unique_id=1650168588]
+curve = SubResource("Curve2D_bn4g2")
+
+[node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemyPath" unique_id=1414974580]
+
+[node name="HUD" parent="." unique_id=1133891467 instance=ExtResource("4_4m8ea")]
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1944808947]
+stream = ExtResource("5_7stsd")
+volume_db = -80.0
+
+[node name="SaveManager" type="Node" parent="." unique_id=1661001889]
+script = ExtResource("6_6d0vw")
+
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
